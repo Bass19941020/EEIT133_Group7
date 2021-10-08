@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廣告刊登</title>
+<style>
+form {
+	width: 70%;
+	margin: 20px auto;
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<form action="/Gather/AdServlet" method="post">
+		<h2>廣告刊登</h2>
+		<input type="submit" name="create" value="新增">
+		<input type="submit" name="read" value="查詢" >
+		<input type="submit" name="update" value="修改" >
+		<input type="submit" name="delete" value="刪除">
+	</form>
+
+</body>
+
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新增訂單</title>
+<!-- 	<link rel="stylesheet" href="/Gather/style.css"> -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<style>
+.btn-outline-light {
+	color: #5B4B00;
+	background-color: #cebfa0;
+	border-color: #5B4B00;
+}
+
+.btn-outline-light:hover, .btn-outline-light:focus, .btn-outline-light:active:hover
+	{
+	color: #4b4b2a;
+	background-color: #caca92;
+	border-color: #c9c969;
+}
+
+body {
+	background-color: rgba(214, 204, 191, 0.767);
+	line-height: 50px;
+}
+
+h2 {
+	background-color: whitesmoke;
+	color: rgb(110, 104, 96);
+}
+
+tr {
+	text-align: center;
+}
+
+td {
+	background-color: whitesmoke;
+	;
+}
+</style>
+</head>
+
+<body>
+	<center>
+		<h2>新增贊助訂單</h2>
+		<form action="/Gather/PaymentServlet" method="post">
+			<table cellspacing="1" cellpadding="3" width="50%">
+				<tr>
+					<td>訂單編號:</td>
+					<td><input type="text" name="trackingno" id="orderid"><br>
+						<span id="spOrderCorrect" style="color: darkseagreen;"></span> <span
+						id="spOrderWrong" style="color: firebrick;"></span></td>
+				</tr>
+				<tr>
+					<td>贊助者:</td>
+					<td><input type="text" name="sponsor" id="sponsor"> <br>
+					<span id="spSponsorCorrect" style="color: darkseagreen;"></span> <span
+						id="spSponsorWrong" style="color: firebrick;"></span></td>
+				</tr>
+				<tr>
+					<td>專案編號:</td>
+					<td><input type="text" name="projectno" id="projectid"><br>
+						<span id="spProjectIDCorrect" style="color: darkseagreen;"></span>
+						<span id="spProjectIDWrong" style="color: firebrick;"></span></td>
+				</tr>
+				<tr>
+					<td width="150">專案名稱:</td>
+					<td><input type="text" name="project" id="projectname"><br>
+						<span id="spProjectNameCorrect" style="color: darkseagreen;"></span>
+						<span id="spProjectNameWrong" style="color: firebrick;"></span></td>
+				</tr>
+				<tr>
+					<td>贊助總額:</td>
+					<td><input type="text" name="amount" id="amount"> <br>
+					<span id="spAmountCorrect" style="color: darkseagreen;"></span> <span
+						id="spAmountWrong" style="color: firebrick;"></span></td>
+				</tr>
+
+			</table>
+
+			<button type="submit" name="submit" class="btn btn-outline-light">送出</button>
+			<button type="reset" name="reset" class="btn btn-outline-light">清除</button>
+			<button type="button" name="back" class="btn btn-outline-light"
+				onclick="window.location='/Gather/Sponsorship/CRUD.html'">返回首頁</button>
+			<script>
+				document.getElementById("orderid").addEventListener("blur",
+						checkID);
+				document.getElementById("sponsor").addEventListener("blur",
+						checkName);
+				document.getElementById("projectid").addEventListener("blur",
+						checkPID);
+				document.getElementById("projectname").addEventListener("blur",
+						checkPName);
+				document.getElementById("amount").addEventListener("blur",
+						checkAmount);
+
+				function checkID() {
+					let theIDValue = document.getElementById("orderid").value;
+					let spoc = document.getElementById("spOrderCorrect");
+					let spow = document.getElementById("spOrderWrong");
+					let n = false;
+
+					if (theIDValue == "") {
+						spow.innerHTML = "請輸入訂單編號!"
+						spoc.innerHTML = ""
+					} else {
+						let chR = /^\+?[1-9][0-9]*$/;
+						if (chR.test(theIDValue)) {
+							spoc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							spow.innerHTML = ""
+						} else {
+							spow.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入數字!"
+							spoc.innerHTML = ""
+						}
+
+					}
+				}
+
+				function checkName() {
+					let theNameValue = document.getElementById("sponsor").value;
+					let spsc = document.getElementById("spSponsorCorrect");
+					let spsw = document.getElementById("spSponsorWrong");
+					let n = false;
+
+					if (theNameValue == "") {
+						spsw.innerHTML = "請輸入姓名!"
+						spsc.innerHTML = ""
+					} else {
+						let eng = /^[a-zA-Z]+$/;
+						let chi = /^[\u4e00-\u9fa5]+$/;
+						if (eng.test(theNameValue)) {
+							spsc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							spsw.innerHTML = ""
+						} else if (chi.test(theNameValue)) {
+							spsc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							spsw.innerHTML = ""
+						} else {
+							spsw.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入全英文或全中文!"
+							spsc.innerHTML = ""
+						}
+
+					}
+
+				}
+
+				function checkPID() {
+					let thePIDValue = document.getElementById("projectid").value;
+					let sppc = document.getElementById("spProjectIDCorrect");
+					let sppw = document.getElementById("spProjectIDWrong");
+					let n = false;
+
+					if (thePIDValue == "") {
+						sppw.innerHTML = "請輸入專案編號!"
+						sppc.innerHTML = ""
+					} else {
+						let chR = /^\+?[1-9][0-9]*$/;
+						if (chR.test(thePIDValue)) {
+							sppc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							sppw.innerHTML = ""
+						} else {
+							sppw.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入數字!"
+							sppc.innerHTML = ""
+						}
+
+					}
+				}
+
+				function checkPName() {
+					let thePNameValue = document.getElementById("projectname").value;
+					let sppnc = document.getElementById("spProjectNameCorrect");
+					let sppnw = document.getElementById("spProjectNameWrong");
+					let n = false;
+
+					if (thePNameValue == "") {
+						sppnw.innerHTML = "請輸入姓名!"
+						sppnc.innerHTML = ""
+					} else {
+						let eng = /^[a-zA-Z]+$/;
+						let chi = /^[\u4e00-\u9fa5]+$/;
+						if (eng.test(thePNameValue)) {
+							sppnc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							sppnw.innerHTML = ""
+						} else if (chi.test(thePNameValue)) {
+							sppnc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							sppnw.innerHTML = ""
+						} else {
+							sppnw.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入全英文或全中文!"
+							sppnc.innerHTML = ""
+						}
+
+					}
+
+				}
+				function checkAmount() {
+					let theAValue = document.getElementById("amount").value;
+					let spac = document.getElementById("spAmountCorrect");
+					let spaw = document.getElementById("spAmountWrong");
+					let n = false;
+
+					if (theAValue == "") {
+						spaw.innerHTML = "請輸入金額!"
+						spac.innerHTML = ""
+					} else {
+						let chR = /^\+?[1-9][0-9]*$/;
+						if (chR.test(theAValue)) {
+							spac.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							spaw.innerHTML = ""
+						} else {
+							spaw.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入數字!"
+							spac.innerHTML = ""
+						}
+
+					}
+				}
+			</script>
+		</form>
+	</center>
+</body>
+
+</html>

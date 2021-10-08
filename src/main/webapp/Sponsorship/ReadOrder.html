@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>查詢訂單</title>
+<!-- <link rel="stylesheet" href="/Gather/style.css"> -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<style>
+.btn-outline-light {
+	color: #5B4B00;
+	background-color: #cebfa0;
+	border-color: #5B4B00;
+}
+
+.btn-outline-light:hover, .btn-outline-light:focus, .btn-outline-light:active:hover
+	{
+	color: #4b4b2a;
+	background-color: #caca92;
+	border-color: #c9c969;
+}
+
+body {
+	background-color: rgba(214, 204, 191, 0.767);
+	line-height: 50px;
+}
+
+h2 {
+	background-color: whitesmoke;
+	color: rgb(110, 104, 96);
+}
+
+tr {
+	text-align: center;
+}
+
+td {
+	background-color: whitesmoke;
+	;
+}
+</style>
+</head>
+<center>
+	<body>
+		<h2>查詢訂單</h2>
+		<form action="/Gather/PaymentServlet" method="post">
+			<select name="select" id="">
+				<option value="sID">ID</option>
+				<option value="sName">Sponsor</option>
+				<option value="sPID">ProjectID</option>
+				<option value="sPName">ProjectName</option>
+				<option value="sAmount">Amount</option>
+			</select> <br> <input type="text" name="searchid" id="searchorderid"><br>
+
+			<button type="submit" name="searchorder"
+				class="btn btn-outline-light">查詢訂單</button>
+			<button type="submit" name="searchall" class="btn btn-outline-light">查詢所有訂單</button>
+			<br>
+			<button type="reset" name="reset" class="btn btn-outline-light">重新輸入</button>
+			<button type="button" name="back" class="btn btn-outline-light"
+				onclick="window.location='/Gather/Sponsorship/CRUD.html'">返回</button>
+
+		</form>
+	</body>
+</center>
+</html>

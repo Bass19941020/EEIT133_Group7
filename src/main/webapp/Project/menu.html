@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="vi.ewport" content="width=device-width, initial-scale=1.0">
+	<title>計畫管理</title>
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="/Gather/style.css">
+	<style>
+.btn-primary {
+  color: #fff;
+  background-color: #46A3FF;
+  border-color: black;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active:hover{
+  color: #fff;
+  background-color: #0080FF;
+  border-color: black;
+}
+</style>
+	
+</head>
+
+	<body>
+		<h2>計畫管理</h2>
+		
+<form action="/Gather/ProjectServlet" method="GET">
+		<button id="goToAddData" name="goToAddData" class="btn btn-primary btn-lg">提出計畫</button>
+		<button id="goToSelect" name="goToSelect" class="btn btn-primary btn-lg">查詢計畫</button>
+		<button id="goToSelectAll" name="goToSelectAll" class="btn btn-primary btn-lg">查詢所有計畫</button>
+	</form>
+
+	</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訂單修改</title>
+<!-- <link rel="stylesheet" href="/Gather/style.css"> -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous">
+<style>
+.btn-outline-light {
+	color: #5B4B00;
+	background-color: #cebfa0;
+	border-color: #5B4B00;
+}
+
+.btn-outline-light:hover, .btn-outline-light:focus, .btn-outline-light:active:hover
+	{
+	color: #4b4b2a;
+	background-color: #caca92;
+	border-color: #c9c969;
+}
+
+body {
+	background-color: rgba(214, 204, 191, 0.767);
+	line-height: 50px;
+}
+
+h2 {
+	background-color: whitesmoke;
+	color: rgb(110, 104, 96);
+}
+
+tr {
+	text-align: center;
+}
+
+td {
+	background-color: whitesmoke;
+	;
+}
+</style>
+</head>
+<center>
+	<body>
+		<h2>更改訂單</h2>
+		<form action="/Gather/PaymentServlet" method="post">
+			欲更改訂單編號:<input type="text" name="updateid" id="updateid"><span
+				id="spOrderCorrect" style="color: darkseagreen;"></span> <span
+				id="spOrderWrong" style="color: firebrick;"></span><br>
+			<!-- 更改贊助金額:<input type="text" name="updatemoney"> -->
+			<button type="submit" name="updatelookup"
+				class="btn btn-outline-light">查詢</button>
+			<button type="button" name="back" class="btn btn-outline-light"
+				onclick="window.location='/Gather/Sponsorship/CRUD.html'">返回</button>
+			<script>
+				document.getElementById("updateid").addEventListener("blur",
+						checkID);
+
+				function checkID() {
+					let theIDValue = document.getElementById("updateid").value;
+					let spoc = document.getElementById("spOrderCorrect");
+					let spow = document.getElementById("spOrderWrong");
+					let n = false;
+
+					if (theIDValue == "") {
+						spow.innerHTML = "請輸入訂單編號!"
+						spoc.innerHTML = ""
+					} else {
+						let chR = /^\+?[1-9][0-9]*$/;
+						if (chR.test(theIDValue)) {
+							spoc.innerHTML = "<img src='./image/correctbyDiana.png'>格式正確!"
+							spow.innerHTML = ""
+						} else {
+							spow.innerHTML = "<img src='./image/wrongbyDiana.png'>請輸入數字!"
+							spoc.innerHTML = ""
+						}
+
+					}
+				}
+			</script>
+	</body>
+</center>
+</html>
